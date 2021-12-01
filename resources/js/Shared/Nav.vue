@@ -1,12 +1,18 @@
 <template>
-    <nav>
-        <ul>
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/about">About</Link></li>
-            <li><Link href="/users">Users</Link></li>
-            <li><Link href="/settings">Settings</Link></li>
-        </ul>
+    <nav class="font-sen text-gray-800 dark:text-white uppercase text-lg lg:flex items-center hidden">
+        <Link href="/" class="py-2 px-6 flex">Home</Link>
+        <Link href="/about" class="py-2 px-6 flex">About</Link>
+        <Link href="/users" class="py-2 px-6 flex">Users</Link>
+        <Link href="/settings" class="py-2 px-6 flex">Settings</Link>
     </nav>
+    <button class="lg:hidden flex flex-col ml-4">
+        <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+        </span>
+        <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+        </span>
+        <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+        </span>
+    </button>
 </template>
 <script>
 import { Link } from "@inertiajs/inertia-vue3";
