@@ -1,9 +1,9 @@
 <template>
-    <header class="h-24 border-b flex items-center z-30 w-full dark:bg-gray-800 bg-white">
+    <header class="h-24 border-b border-gray-700 flex items-center z-30 w-full">
         <div class="container mx-auto px-6 flex items-center justify-between">
-            <div class="uppercase text-gray-800 dark:text-white font-black text-3xl">
+            <div class="font-black text-3xl">
                 <Link href="/">
-                    <img src="/images/logo.svg" alt="KROSS" width="120">
+                    <img src="/images/logo-light.svg" alt="KROSS" width="120">
                 </Link>
             </div>
             <div class="flex items-center">

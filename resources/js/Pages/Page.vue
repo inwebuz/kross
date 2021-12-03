@@ -1,12 +1,13 @@
 <template>
-    <h1>{{ page.name }}</h1>
-    <Nav></Nav>
+    <div class="container mx-auto px-6 py-16">
+        <h1 class="text-3xl font-bold mb-4">{{ page.name }}</h1>
+        <p>{{ page.description }}</p>
+    </div>
+
 </template>
 
 <script>
-import Nav from "../Shared/Nav";
 export default {
-    components: { Nav },
     props: {
         page: Array
     }

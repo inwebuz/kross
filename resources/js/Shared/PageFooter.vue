@@ -1,7 +1,7 @@
 <template>
-    <footer class="h-24 border-t flex items-center z-30 w-full dark:bg-gray-800 bg-white ">
+    <footer class="h-24 border-t border-gray-700 flex items-center z-30 w-full">
         <div class="container mx-auto px-6 flex items-center justify-between">
-            <div class="text-gray-800 dark:text-white">
+            <div class="text-sm">
                 &copy; 2021 KROSS. Все права защищены
             </div>
             <div class="flex items-center">
