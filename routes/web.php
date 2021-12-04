@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SongController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -14,21 +18,10 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
-Route::get('/about', function () {
-    return Inertia::render('Page', [
-        'page' => [
-            'name' => 'About',
-            'description' => 'Page description',
-        ],
-    ]);
-});
-Route::get('/users', function () {
-    sleep(2);
-    return Inertia::render('Users');
-});
-Route::get('/settings', function () {
-    return Inertia::render('Settings');
-});
+Route::get('/', [PageController::class, 'home'])->name('page.home');;
+Route::get('/about', [PageController::class, 'about'])->name('page.about');;
+Route::get('/contacts', [PageController::class, 'contacts'])->name('page.contacts');;
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('/services', [PageController::class, 'services'])->name('page.services');
+// Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+Route::get('/songs', [SongController::class, 'index'])->name('songs.index');

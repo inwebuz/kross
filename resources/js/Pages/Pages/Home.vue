@@ -25,5 +25,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+    props: {
+        page: Object
+    }
+}
 </script>
