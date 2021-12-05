@@ -17,6 +17,9 @@ class CreateSongsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('service_id')->nullable();
             $table->string('name')->nullable();
+            $table->string('artist')->nullable();
+            $table->string('album')->nullable();
+            $table->text('cover')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->mediumText('description')->nullable();
             $table->text('file')->nullable();

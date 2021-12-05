@@ -16,8 +16,11 @@ class SongFactory extends Factory
     {
         $name = $this->faker->name();
         return [
-            'name' => $name,
-            'file' => $this->faker->word . '.mp3',
+            'name' => $this->faker->word,
+            'artist' => $name,
+            'album' => $this->faker->word,
+            'cover' => 'songs/01.png',
+            'file' => '01.mp3',
             'status' => 1,
         ];
     }

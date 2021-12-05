@@ -46,10 +46,12 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i < 5; $i++) {
             Song::factory()->create([
                 'name' => '0' . $i,
-                'status' => $i,
-                'image' => 'songs/0' . $i . '.png',
+                'artist' => 'Jasur Saidov',
+                'album' => 'Kross',
+                'cover' => 'songs/0' . $i . '.png',
                 'file' => 'songs/0' . $i . '.mp3',
                 'file_name' => '0' . $i . '.mp3',
+                'status' => $i,
             ]);
         }
 
