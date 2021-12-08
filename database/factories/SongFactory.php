@@ -19,7 +19,7 @@ class SongFactory extends Factory
             'name' => $this->faker->word,
             'artist' => $name,
             'album' => $this->faker->word,
-            'cover' => 'songs/01.png',
+            'image' => 'songs/01.png',
             'file' => '01.mp3',
             'status' => 1,
         ];

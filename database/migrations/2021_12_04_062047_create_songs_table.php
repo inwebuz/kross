@@ -19,12 +19,11 @@ class CreateSongsTable extends Migration
             $table->string('name')->nullable();
             $table->string('artist')->nullable();
             $table->string('album')->nullable();
-            $table->text('cover')->nullable();
+            $table->text('image')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->mediumText('description')->nullable();
             $table->text('file')->nullable();
             $table->string('file_name')->nullable();
-            $table->text('image')->nullable();
             $table->timestamps();
         });
     }
