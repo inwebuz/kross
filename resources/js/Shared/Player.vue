@@ -1,13 +1,11 @@
 <template>
-    <div class="grid grid-cols-3">
-        <div class="player">
+    <div class="lg:grid lg:grid-cols-3 max-w-4xl">
+        <div class="col-span-2 player rounded mb-4 lg:mb-0 lg:pr-16">
             <div class="player__top">
                 <div class="player-cover">
-                    <transition-group :name="transitionName">
-                        <template v-for="(track, index) in songs" :key="index">
-                            <div class="player-cover__item" v-if="index === currentTrackIndex" :style="{ backgroundImage: `url(${track.cover})` }"></div>
-                        </template>
-                    </transition-group>
+                    <template v-for="(track, index) in songs" :key="index">
+                        <div class="player-cover__item" v-if="index === currentTrackIndex" :style="{ backgroundImage: `url(${track.cover})` }"></div>
+                    </template>
                 </div>
                 <div class="player-controls">
                     <div
@@ -74,8 +72,8 @@
             </div>
             <div v-cloak></div>
         </div>
-        <div class="playlist bg-gray-600 p-4">
-            <div v-for="(song, index) in songs" :key="index" class="mb-2" @click="loadTrack(index)">
+        <div class="playlist divide-y divide-gray-400 divide-dashed">
+            <div v-for="(song, index) in songs" :key="index" @click="loadTrack(index)" class="py-2 cursor-pointer transition-all" :class="{'text-red-600': currentTrackIndex == index, 'hover:text-red-600': currentTrackIndex != index}">
                 {{ song.name }}
             </div>
         </div>
@@ -188,7 +186,6 @@ export default {
             isTimerPlaying: false,
             currentTrack: null,
             currentTrackIndex: 0,
-            transitionName: null,
         };
     },
     methods: {
@@ -246,15 +243,11 @@ export default {
             this.updateBar(e.pageX);
         },
         loadTrack(index) {
-            this.transitionName = "scale-out";
-            this.isShowCover = false;
             this.currentTrackIndex = index;
             this.currentTrack = this.songs[this.currentTrackIndex];
             this.resetPlayer();
         },
         prevTrack() {
-            this.transitionName = "scale-in";
-            this.isShowCover = false;
             if (this.currentTrackIndex > 0) {
                 this.currentTrackIndex--;
             } else {
@@ -264,8 +257,6 @@ export default {
             this.resetPlayer();
         },
         nextTrack() {
-            this.transitionName = "scale-out";
-            this.isShowCover = false;
             if (this.currentTrackIndex < this.songs.length - 1) {
                 this.currentTrackIndex++;
             } else {
@@ -288,8 +279,7 @@ export default {
             }, 300);
         },
         favorite() {
-            this.songs[this.currentTrackIndex].favorited =
-                !this.songs[this.currentTrackIndex].favorited;
+            this.songs[this.currentTrackIndex].favorited = !this.songs[this.currentTrackIndex].favorited;
         },
     },
     created() {
@@ -325,21 +315,12 @@ export default {
   fill: currentColor;
 }
 .player {
-    background: #eef3f7;
-    width: 410px;
     min-height: 480px;
-    box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
-    border-radius: 15px;
-    padding: 30px;
+    box-shadow: 0px 15px 35px -5px rgba(50, 50, 50, 0.3);
 }
 @media screen and (max-width: 576px), (max-height: 500px) {
     .player {
-        width: 95%;
-        padding: 20px;
-        margin-top: 75px;
         min-height: initial;
-        padding-bottom: 30px;
-        max-width: 400px;
     }
 }
 .player__top {
@@ -356,7 +337,6 @@ export default {
 .player-cover {
     width: 300px;
     height: 300px;
-    margin-left: -70px;
     flex-shrink: 0;
     position: relative;
     z-index: 2;
@@ -365,12 +345,9 @@ export default {
 }
 @media screen and (max-width: 576px), (max-height: 500px) {
     .player-cover {
-        margin-top: -70px;
         margin-bottom: 25px;
-        width: 290px;
-        height: 230px;
-        margin-left: auto;
-        margin-right: auto;
+        width: 280px;
+        height: 280px;
     }
 }
 .player-cover__item {
@@ -389,7 +366,7 @@ export default {
     background: inherit;
     width: 100%;
     height: 100%;
-    box-shadow: 0px 10px 40px 0px rgba(76, 70, 124, 0.5);
+    /* box-shadow: 0px 10px 40px 0px rgba(76, 70, 124, 0.5); */
     display: block;
     z-index: 1;
     position: absolute;
@@ -404,7 +381,7 @@ export default {
     background: inherit;
     width: 100%;
     height: 100%;
-    box-shadow: 0px 10px 40px 0px rgba(76, 70, 124, 0.5);
+    /* box-shadow: 0px 10px 40px 0px rgba(76, 70, 124, 0.5); */
     display: block;
     z-index: 2;
     position: absolute;
@@ -439,7 +416,7 @@ export default {
     font-size: 30px;
     padding: 5px;
     margin-bottom: 10px;
-    color: #acb8cc;
+    color: #fff;
     cursor: pointer;
     width: 50px;
     height: 50px;
@@ -451,10 +428,7 @@ export default {
 @media screen and (max-width: 576px), (max-height: 500px) {
     .player-controls__item {
         font-size: 26px;
-        padding: 5px;
         margin-right: 10px;
-        color: #acb8cc;
-        cursor: pointer;
         width: 40px;
         height: 40px;
         margin-bottom: 0;
@@ -475,7 +449,7 @@ export default {
 }
 @media screen and (min-width: 500px) {
     .player-controls__item:hover {
-        color: #532ab9;
+        color: rgba(239, 68, 68);
     }
     .player-controls__item:hover::before {
         opacity: 1;
@@ -484,7 +458,7 @@ export default {
 }
 @media screen and (max-width: 576px), (max-height: 500px) {
     .player-controls__item:active {
-        color: #532ab9;
+        color: rgba(239, 68, 68);
     }
     .player-controls__item:active::before {
         opacity: 1;
@@ -506,9 +480,7 @@ export default {
 }
 @media screen and (max-width: 576px), (max-height: 500px) {
     .player-controls__item.-xl {
-        margin-left: auto;
         font-size: 75px;
-        margin-right: 0;
     }
 }
 .player-controls__item.-xl:before {
@@ -537,14 +509,14 @@ export default {
     justify-content: space-between;
 }
 .progress__duration {
-    color: #71829e;
+    color: #fff;
     font-weight: 700;
     font-size: 20px;
     opacity: 0.5;
 }
 .progress__time {
     margin-top: 2px;
-    color: #71829e;
+    color: #fff;
     font-weight: 700;
     font-size: 16px;
     opacity: 0.7;
@@ -554,7 +526,7 @@ export default {
     height: 6px;
     width: 100%;
     cursor: pointer;
-    background-color: #d0d8e6;
+    background-color: #fff;
     display: inline-block;
     border-radius: 10px;
 }
@@ -562,12 +534,12 @@ export default {
 .progress__current {
     height: inherit;
     width: 0%;
-    background-color: #a3b3ce;
+    background-color: rgb(220, 38, 28);
     border-radius: 10px;
 }
 
 .album-info {
-    color: #71829e;
+    color: #fff;
     flex: 1;
     padding-right: 60px;
     user-select: none;
@@ -594,7 +566,6 @@ export default {
     font-size: 20px;
     opacity: 0.7;
     line-height: 1.3em;
-    min-height: 52px;
 }
 @media screen and (max-width: 576px), (max-height: 500px) {
     .album-info__track {
@@ -603,43 +574,4 @@ export default {
     }
 }
 
-.scale-out-enter-active {
-    transition: all 0.35s ease-in-out;
-}
-
-.scale-out-leave-active {
-    transition: all 0.35s ease-in-out;
-}
-
-.scale-out-enter {
-    transform: scale(0.55);
-    pointer-events: none;
-    opacity: 0;
-}
-
-.scale-out-leave-to {
-    transform: scale(1.2);
-    pointer-events: none;
-    opacity: 0;
-}
-
-.scale-in-enter-active {
-    transition: all 0.35s ease-in-out;
-}
-
-.scale-in-leave-active {
-    transition: all 0.35s ease-in-out;
-}
-
-.scale-in-enter {
-    transform: scale(1.2);
-    pointer-events: none;
-    opacity: 0;
-}
-
-.scale-in-leave-to {
-    transform: scale(0.55);
-    pointer-events: none;
-    opacity: 0;
-}
 </style>

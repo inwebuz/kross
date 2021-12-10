@@ -10,22 +10,24 @@
                 Dimension of reality that makes change possible and understandable. An indefinite and homogeneous environment in which natural events and human existence take place.
             </p>
             <div class="mt-8">
-                <a href="#" class="uppercase py-2 px-4 rounded-lg bg-red-600 border-2 border-transparent text-white text-md mr-4 hover:bg-red-500">
-                    Get started
-                </a>
-                <a href="#" class="uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-red-600 text-red-500 dark:text-white hover:bg-red-500 hover:border-red-500 hover:text-white text-md">
-                    Read more
-                </a>
+                <Link href="/songs" class="uppercase py-2 px-4 rounded-lg bg-red-600 border-2 border-transparent text-white text-md mr-4 hover:bg-red-500">
+                    Songs
+                </Link>
+                <Link href="/services" class="uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-red-600 text-red-500 dark:text-white hover:bg-red-500 hover:border-red-500 hover:text-white text-md">
+                    Services
+                </Link>
             </div>
         </div>
         <div class="sm:w-1/3 lg:w-3/5 flex items-center mt-10 sm:mt-0">
-            <img src="/images/music.png" class="max-w-xs md:max-w-sm m-auto"/>
+            <!-- <img src="/images/music.png" class="max-w-xs md:max-w-sm m-auto"/> -->
         </div>
     </div>
 </template>
 
 <script>
+import { Link } from '@inertiajs/inertia-vue3'
 export default {
+    components: { Link },
     props: {
         page: Object
     }

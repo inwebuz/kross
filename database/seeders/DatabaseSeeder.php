@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use App\Models\Page;
 use App\Models\Setting;
 use App\Models\Song;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +19,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        $faker = Factory::create();
 
         Page::factory()->create([
             'name' => 'Home',
@@ -45,10 +49,10 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 1; $i < 5; $i++) {
             Song::factory()->create([
-                'name' => '0' . $i,
-                'artist' => 'Artist 1',
+                'name' => Str::title(implode(' ', $faker->words(3))),
+                'artist' => $faker->name,
                 'album' => 'Kross',
-                'image' => 'songs/0' . $i . '.png',
+                'image' => 'songs/0' . $i . '.jpg',
                 'file' => 'songs/0' . $i . '.mp3',
                 'file_name' => '0' . $i . '.mp3',
             ]);
