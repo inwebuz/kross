@@ -245,6 +245,7 @@ export default {
         loadTrack(index) {
             this.currentTrackIndex = index;
             this.currentTrack = this.songs[this.currentTrackIndex];
+            this.isTimerPlaying = true;
             this.resetPlayer();
         },
         prevTrack() {
@@ -254,6 +255,7 @@ export default {
                 this.currentTrackIndex = this.songs.length - 1;
             }
             this.currentTrack = this.songs[this.currentTrackIndex];
+            this.isTimerPlaying = true;
             this.resetPlayer();
         },
         nextTrack() {
@@ -263,6 +265,7 @@ export default {
                 this.currentTrackIndex = 0;
             }
             this.currentTrack = this.songs[this.currentTrackIndex];
+            this.isTimerPlaying = true;
             this.resetPlayer();
         },
         resetPlayer() {

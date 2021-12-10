@@ -1,4 +1,5 @@
 <template>
+    <Head :title="page.name" />
     <div class="container mx-auto px-6 py-16">
         <h1 class="text-3xl font-bold mb-4">{{ page.name }}</h1>
 
@@ -10,16 +11,11 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import Player from '../../Shared/Player.vue'
-export default {
-    props: {
-        page: Object,
-        songs: Object,
-    },
-    components: { Player },
-    mounted() {
-        // console.log(this.songs);
-    },
-};
+defineProps({
+    page: Object,
+    songs: Object,
+})
+
 </script>

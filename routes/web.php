@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
@@ -20,7 +21,8 @@ use Inertia\Inertia;
 
 Route::get('/', [PageController::class, 'home'])->name('page.home');;
 Route::get('/about', [PageController::class, 'about'])->name('page.about');;
-Route::get('/contacts', [PageController::class, 'contacts'])->name('page.contacts');;
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');;
+Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');;
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/services', [PageController::class, 'services'])->name('page.services');
 // Route::get('/services', [ServiceController::class, 'index'])->name('services.index');

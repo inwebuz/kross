@@ -1,4 +1,5 @@
 <template>
+    <Head :title="page.name" />
     <div class="container mx-auto px-6 flex flex-col sm:flex-row relative py-16">
         <div class="sm:w-2/3 lg:w-3/5 flex flex-col justify-center relative z-20 text-center sm:text-left">
             <span class="w-20 h-2 mb-12 hidden sm:inline-block bg-white">
@@ -24,12 +25,9 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { Link } from '@inertiajs/inertia-vue3'
-export default {
-    components: { Link },
-    props: {
-        page: Object
-    }
-}
+defineProps({
+    page: Object,
+})
 </script>

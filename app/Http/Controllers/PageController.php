@@ -32,14 +32,4 @@ class PageController extends Controller
             'page' => $page,
         ]);
     }
-
-    public function contacts(Request $request)
-    {
-        $page = Page::where('slug', 'contacts')->first();
-        $settings = Setting::all()->keyBy('key');
-        return Inertia::render('Pages/Contacts', [
-            'page' => $page,
-            'settings' => $settings,
-        ]);
-    }
 }

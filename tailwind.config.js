@@ -13,9 +13,14 @@ module.exports = {
                 gray: colors.trueGray,
             }
         },
+        fontFamily: {
+            'sans': ['Open Sans', 'Arial', 'sans-serif'],
+        },
     },
     variants: {
-        extend: {},
+        extend: {
+            backgroundColor: ['disabled']
+        },
     },
     plugins: [
         require('@tailwindcss/forms'),

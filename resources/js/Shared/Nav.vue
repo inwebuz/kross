@@ -3,7 +3,7 @@
         <Link href="/" class="py-2 px-6 text-white hover:text-red-500 transtion-all" :class="{'text-red-500': $page.component == 'Pages/Home'}">Home</Link>
         <Link href="/songs" class="py-2 px-6 text-white hover:text-red-500 transtion-all" :class="{'text-red-500': $page.component == 'Songs/Index'}">Songs</Link>
         <Link href="/services" class="py-2 px-6 text-white hover:text-red-500 transtion-all" :class="{'text-red-500': $page.component == 'Pages/Common' && $page.url == '/services'}">Services</Link>
-        <Link href="/contacts" class="py-2 px-6 text-white hover:text-red-500 transtion-all" :class="{'text-red-500': $page.component == 'Pages/Contacts'}">Contacts</Link>
+        <Link href="/contacts" class="py-2 px-6 text-white hover:text-red-500 transtion-all" :class="{'text-red-500': $page.component == 'Contacts/Index'}">Contacts</Link>
     </nav>
     <button class="lg:hidden flex flex-col ml-4" @click="showMobileNav">
         <span class="w-6 h-1 bg-white mb-1">
