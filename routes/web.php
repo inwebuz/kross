@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SongController as AdminSongController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
@@ -27,3 +28,10 @@ Route::get('/projects', [ProjectController::class, 'index'])->name('projects.ind
 Route::get('/services', [PageController::class, 'services'])->name('page.services');
 // Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
+
+Route::prefix('admin')->group(function(){
+    Route::get('/songs', [AdminSongController::class, 'index']);
+    Route::get('/songs/create', [AdminSongController::class, 'create']);
+    Route::post('/songs', [AdminSongController::class, 'store']);
+    Route::delete('/songs/{song}', [AdminSongController::class, 'destroy']);
+});
