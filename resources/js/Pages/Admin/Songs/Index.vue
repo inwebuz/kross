@@ -1,7 +1,32 @@
 <template>
     <Head title="Songs" />
     <div class="container mx-auto px-6 py-16">
-        <h1 class="text-3xl font-bold mb-4">Songs</h1>
+        <h1 class="text-3xl font-bold mb-6">Songs</h1>
+
+        <div
+            v-if="$page.props.flash.success"
+            class="bg-green-100 text-green-700 rounded my-4 p-4 font-semibold"
+            v-text="$page.props.flash.success"
+        ></div>
+
+        <div class="my-4">
+            <Link
+                href="/admin/songs/create"
+                class="
+                    uppercase
+                    py-2
+                    px-3
+                    text-sm
+                    rounded-lg
+                    bg-red-600
+                    border-2 border-transparent
+                    text-white
+                    mr-4
+                    hover:bg-red-500
+                "
+                >Create new</Link
+            >
+        </div>
 
         <div class="my-4">
             <svg
@@ -77,8 +102,17 @@
                 <tbody class="divide-y divide-gray-200">
                     <tr v-for="(song, index) in songs.data" :key="index">
                         <td class="px-6 py-4 flex items-center">
-                            <svg @click="play(index)" width="24" height="24" fill="#fff" class="mr-2 cursor-pointer">
-                                <use xlink:href="#icon-pause" v-if="currentTrackIndex == index"></use>
+                            <svg
+                                @click="play(index)"
+                                width="24"
+                                height="24"
+                                fill="#fff"
+                                class="mr-2 cursor-pointer"
+                            >
+                                <use
+                                    xlink:href="#icon-pause"
+                                    v-if="currentTrackIndex == index"
+                                ></use>
                                 <use xlink:href="#icon-play" v-else></use>
                             </svg>
                             <span @click="play(index)" class="cursor-pointer">
@@ -90,15 +124,23 @@
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-bold">
                             <Link
-                                :href="'/songs/' + song.id" as="button"
+                                :href="'/admin/songs/' + song.id"
+                                as="button"
                                 method="DELETE"
-                                class="text-red-600 hover:text-red-900">
+                                class="text-red-600 hover:text-red-900"
+                            >
                                 Delete
                             </Link>
                         </td>
                     </tr>
                 </tbody>
             </table>
+
+            <Pagination
+                v-if="songs.last_page > 1"
+                :links="songs.links"
+                class="mt-4"
+            />
         </div>
 
         <!-- <div class="my-4 max-w-lg" v-html="page.description"></div> -->
@@ -107,20 +149,21 @@
 
 <script>
 import { Link } from "@inertiajs/inertia-vue3";
+import Pagination from "../../../Shared/Pagination";
 export default {
     data() {
         return {
             audio: null,
             currentTrackIndex: null,
-        }
+        };
     },
-    components: { Link },
+    components: { Link, Pagination },
     props: {
         songs: Object,
     },
     methods: {
         play(index) {
-            if (this.audio.paused) {
+            if (this.audio.paused || index != this.currentTrackIndex) {
                 this.currentTrackIndex = index;
                 this.audio.currentTime = 0;
                 this.audio.src = this.songs.data[index].source;

@@ -30,7 +30,7 @@ Route::get('/services', [PageController::class, 'services'])->name('page.service
 Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
 
 Route::prefix('admin')->group(function(){
-    Route::get('/songs', [AdminSongController::class, 'index']);
+    Route::get('/songs', [AdminSongController::class, 'index'])->name('admin.songs.index');
     Route::get('/songs/create', [AdminSongController::class, 'create']);
     Route::post('/songs', [AdminSongController::class, 'store']);
     Route::delete('/songs/{song}', [AdminSongController::class, 'destroy']);

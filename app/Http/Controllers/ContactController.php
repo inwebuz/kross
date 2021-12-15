@@ -22,7 +22,6 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        sleep(2);
         $data = $request->validate([
             'name' => 'required',
             'phone_number' => 'required',
