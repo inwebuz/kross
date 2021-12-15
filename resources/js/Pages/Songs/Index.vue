@@ -6,8 +6,6 @@
         <div class="my-4">
             <Player :songs="this.songs" />
         </div>
-
-        <!-- <div class="my-4 max-w-lg" v-html="page.description"></div> -->
     </div>
 </template>
 
