@@ -4,7 +4,7 @@
         <h1 class="text-3xl font-bold mb-4">Create Song</h1>
 
         <div class="my-4">
-            <form action="" method="post">
+            <form action="" method="post" class="mx-auto max-w-3xl">
                 <div class="mb-6">
                     <label class="block mb-2 font-bold">Name</label>
                     <input type="text" class="border border-gray-400 p-2 w-full">
