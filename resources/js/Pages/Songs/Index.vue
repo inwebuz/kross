@@ -4,7 +4,7 @@
         <h1 class="text-3xl font-bold mb-4">{{ page.name }}</h1>
 
         <div class="my-4">
-            <Player :songs="this.songs" />
+            <Player :songs="songs" />
         </div>
     </div>
 </template>
