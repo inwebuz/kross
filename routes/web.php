@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\SongController as AdminSongController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
@@ -21,17 +22,20 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [PageController::class, 'home'])->name('page.home');;
-Route::get('/about', [PageController::class, 'about'])->name('page.about');;
-Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');;
-Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');;
-Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
-Route::get('/services', [PageController::class, 'services'])->name('page.services');
+Route::get('about', [PageController::class, 'about'])->name('page.about');;
+Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');;
+Route::post('contacts', [ContactController::class, 'store'])->name('contacts.store');;
+Route::get('projects', [ProjectController::class, 'index'])->name('projects.index');
+Route::get('services', [PageController::class, 'services'])->name('page.services');
 // Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
-Route::get('/songs', [SongController::class, 'index'])->name('songs.index');
+Route::get('songs', [SongController::class, 'index'])->name('songs.index');
 
-Route::prefix('admin')->group(function(){
-    Route::get('/songs', [AdminSongController::class, 'index'])->name('admin.songs.index');
-    Route::get('/songs/create', [AdminSongController::class, 'create']);
-    Route::post('/songs', [AdminSongController::class, 'store']);
-    Route::delete('/songs/{song}', [AdminSongController::class, 'destroy']);
+Route::get('login', [LoginController::class, 'create'])->name('login');
+Route::post('login', [LoginController::class, 'store'])->name('login.store');
+
+Route::prefix('admin')->middleware(['auth'])->group(function(){
+    Route::get('songs', [AdminSongController::class, 'index'])->name('admin.songs.index');
+    Route::get('songs/create', [AdminSongController::class, 'create']);
+    Route::post('songs', [AdminSongController::class, 'store']);
+    Route::delete('songs/{song}', [AdminSongController::class, 'destroy']);
 });
