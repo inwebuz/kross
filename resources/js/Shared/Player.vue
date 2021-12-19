@@ -319,7 +319,6 @@ export default {
 }
 .player {
     min-height: 480px;
-    box-shadow: 0px 15px 35px -5px rgba(50, 50, 50, 0.3);
 }
 @media screen and (max-width: 576px), (max-height: 500px) {
     .player {

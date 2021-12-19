@@ -1,13 +1,12 @@
 <template>
     <Head title="Create Song" />
     <div class="container mx-auto px-6 py-16">
+        <Breadcrumbs :links="breadcrumbs" />
+
         <h1 class="text-3xl font-bold mb-4">Create Song</h1>
 
         <div class="my-4">
-            <form
-                @submit.prevent="submit"
-                class="max-w-2xl"
-            >
+            <form @submit.prevent="submit" class="max-w-2xl">
                 <div
                     v-if="$page.props.flash.success"
                     class="
@@ -110,12 +109,31 @@
 import { reactive, ref } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import { useForm } from "@inertiajs/inertia-vue3";
+import Breadcrumbs from "../../../Shared/Breadcrumbs";
 let form = useForm({
     name: null,
     artist: null,
     file: null,
     image: null,
 });
+let breadcrumbs = [
+    {
+        name: "Home",
+        url: "/",
+    },
+    {
+        name: "Admin",
+        url: "/admin",
+    },
+    {
+        name: "Songs",
+        url: "/admin/songs",
+    },
+    {
+        name: "Create",
+        url: "",
+    },
+];
 let submit = () => {
     form.post("/admin/songs", {
         preserveScroll: true,

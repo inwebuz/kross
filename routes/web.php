@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\SongController as AdminSongController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SongController;
 use Illuminate\Support\Facades\Route;
@@ -31,11 +33,17 @@ Route::get('services', [PageController::class, 'services'])->name('page.services
 Route::get('songs', [SongController::class, 'index'])->name('songs.index');
 
 Route::get('login', [LoginController::class, 'create'])->name('login');
-Route::post('login', [LoginController::class, 'store'])->name('login.store');
+Route::post('login', [LoginController::class, 'store']);
 
-Route::prefix('admin')->middleware(['auth'])->group(function(){
-    Route::get('songs', [AdminSongController::class, 'index'])->name('admin.songs.index');
+Route::get('register', [RegisterController::class, 'create'])->name('register');
+Route::post('register', [RegisterController::class, 'store']);
+
+Route::group(['as' => 'admin', 'middleware' => ['auth'], 'prefix' => 'admin'], function(){
+    Route::get('/', [AdminPageController::class, 'index'])->name('index');
+    Route::get('songs', [AdminSongController::class, 'index'])->name('songs.index');
     Route::get('songs/create', [AdminSongController::class, 'create']);
     Route::post('songs', [AdminSongController::class, 'store']);
     Route::delete('songs/{song}', [AdminSongController::class, 'destroy']);
 });
+
+Route::post('logout', [LoginController::class, 'destroy'])->middleware(['auth'])->name('logout');

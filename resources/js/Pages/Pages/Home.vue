@@ -14,7 +14,7 @@
                 <Link href="/songs" class="uppercase py-2 px-4 rounded-lg bg-red-600 border-2 border-transparent text-white text-md mr-4 hover:bg-red-500">
                     Songs
                 </Link>
-                <Link href="/services" class="uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-red-600 text-red-500 dark:text-white hover:bg-red-500 hover:border-red-500 hover:text-white text-md">
+                <Link href="/services" class="uppercase py-2 px-4 rounded-lg bg-transparent border-2 border-red-600 text-red-500 dark:text-white hover:bg-red-600 hover:border-red-600 hover:text-white text-md">
                     Services
                 </Link>
             </div>

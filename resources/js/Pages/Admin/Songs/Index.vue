@@ -1,6 +1,9 @@
 <template>
     <Head title="Songs" />
     <div class="container mx-auto px-6 py-16">
+
+        <Breadcrumbs :links="breadcrumbs" />
+
         <h1 class="text-3xl font-bold mb-6">Songs</h1>
 
         <div
@@ -150,14 +153,29 @@
 <script>
 import { Link } from "@inertiajs/inertia-vue3";
 import Pagination from "../../../Shared/Pagination";
+import Breadcrumbs from '../../../Shared/Breadcrumbs'
 export default {
     data() {
         return {
             audio: null,
             currentTrackIndex: null,
+            breadcrumbs: [
+                {
+                    name: 'Home',
+                    url: '/',
+                },
+                {
+                    name: 'Admin',
+                    url: '/admin',
+                },
+                {
+                    name: 'Songs',
+                    url: '',
+                },
+            ],
         };
     },
-    components: { Link, Pagination },
+    components: { Link, Pagination, Breadcrumbs },
     props: {
         songs: Object,
     },
