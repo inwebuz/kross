@@ -37,7 +37,7 @@ class PageController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|max:191',
+            'name' => 'required|max:255',
             'description' => 'required|max:50000',
             'seo_title' => 'max:500',
             'meta_description' => 'max:5000',
@@ -65,11 +65,11 @@ class PageController extends Controller
     public function update(Request $request, Page $page)
     {
         $data = $request->validate([
-            'name' => 'required|max:191',
+            'name' => 'required|max:255',
             'description' => 'required|max:50000',
-            'seo_title' => 'required|max:500',
-            'meta_description' => 'required|max:5000',
-            'meta_keywords' => 'required|max:5000',
+            'seo_title' => 'max:500',
+            'meta_description' => 'max:5000',
+            'meta_keywords' => 'max:5000',
         ]);
 
         $updateData = [

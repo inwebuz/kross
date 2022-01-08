@@ -46,6 +46,22 @@
                 >Pages</Link
             >
             <Link
+                href="/admin/settings"
+                class="
+                    uppercase
+                    py-2
+                    px-3
+                    text-sm
+                    rounded-lg
+                    bg-red-600
+                    border-2 border-transparent
+                    text-white
+                    mr-4
+                    hover:bg-red-500
+                "
+                >Settings</Link
+            >
+            <Link
                 href="/logout"
                 method="POST"
                 class="

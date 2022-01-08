@@ -30,14 +30,15 @@
             </div>
             <div class="mb-6">
                 <label class="block mb-2 font-bold">Description</label>
-                <textarea
+                <editor v-model="form.description" />
+                <!-- <textarea
                     type="text"
                     class="border border-gray-400 p-2 w-full text-black"
                     v-model="form.description"
-                ></textarea>
+                ></textarea> -->
                 <div
-                    v-if="form.errors.artist"
-                    v-text="form.errors.artist"
+                    v-if="form.errors.description"
+                    v-text="form.errors.description"
                     class="text-red-600 text-xs mt-1"
                 ></div>
             </div>
@@ -113,6 +114,7 @@
 </template>
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
+import Editor from "../../Shared/Editor"
 const props = defineProps({
     page: Object,
 });
@@ -124,7 +126,6 @@ let form = useForm({
     meta_keywords: props.page ? props.page.meta_keywords : null,
 });
 let submit = () => {
-
     let isEdit = props.page ? true : false;
     if (isEdit) {
         form.put("/admin/pages/" + props.page.id, {
@@ -138,5 +139,4 @@ let submit = () => {
         });
     }
 };
-
 </script>

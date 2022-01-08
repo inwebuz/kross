@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PageController as AdminPageController;
+use App\Http\Controllers\Admin\SettingController as AdminSettingController;
 use App\Http\Controllers\Admin\SongController as AdminSongController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactController;
@@ -42,6 +43,7 @@ Route::group(['as' => 'admin.', 'middleware' => ['auth'], 'prefix' => 'admin'], 
     Route::get('/', [AdminPageController::class, 'dashboard'])->name('dashboard');
     Route::resource('songs', AdminSongController::class);
     Route::resource('pages', AdminPageController::class);
+    Route::resource('settings', AdminSettingController::class);
 });
 
 Route::post('logout', [LoginController::class, 'destroy'])->middleware(['auth'])->name('logout');

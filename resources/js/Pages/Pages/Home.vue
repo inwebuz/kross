@@ -7,9 +7,7 @@
             <h1 class="font-bebas-neue uppercase text-5xl sm:text-7xl font-black flex flex-col leading-none mb-4">
                 KROSS REMIX
             </h1>
-            <p class="text-sm sm:text-base">
-                Dimension of reality that makes change possible and understandable. An indefinite and homogeneous environment in which natural events and human existence take place.
-            </p>
+            <div class="text-block" v-html="page.description"></div>
             <div class="mt-8">
                 <Link href="/songs" class="uppercase py-2 px-4 rounded-lg bg-red-600 border-2 border-transparent text-white text-md mr-4 hover:bg-red-500">
                     Songs

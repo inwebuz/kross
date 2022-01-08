@@ -285,8 +285,9 @@ export default {
             this.songs[this.currentTrackIndex].favorited = !this.songs[this.currentTrackIndex].favorited;
         },
     },
-    unmounted() {
+    beforeUnmount() {
         this.audio.pause();
+        this.audio = null;
         this.isTimerPlaying = false;
     },
     created() {

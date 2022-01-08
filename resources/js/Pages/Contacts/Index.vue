@@ -151,7 +151,7 @@
           </div>
         </form>
       </div>
-      <div v-html="page.description"></div>
+      <div class="text-block" v-html="page.description"></div>
     </div>
   </div>
 </template>
