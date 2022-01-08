@@ -36,8 +36,8 @@ Route::get('songs', [SongController::class, 'index'])->name('songs.index');
 Route::get('login', [LoginController::class, 'create'])->name('login');
 Route::post('login', [LoginController::class, 'store']);
 
-Route::get('register', [RegisterController::class, 'create'])->name('register');
-Route::post('register', [RegisterController::class, 'store']);
+// Route::get('register', [RegisterController::class, 'create'])->name('register');
+// Route::post('register', [RegisterController::class, 'store']);
 
 Route::group(['as' => 'admin.', 'middleware' => ['auth'], 'prefix' => 'admin'], function(){
     Route::get('/', [AdminPageController::class, 'dashboard'])->name('dashboard');
