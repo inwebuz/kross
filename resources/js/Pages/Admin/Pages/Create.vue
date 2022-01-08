@@ -1,19 +1,18 @@
 <template>
-    <Head title="Create Song" />
+    <Head title="Create Page" />
     <div class="container mx-auto px-6 py-16">
         <Breadcrumbs :links="breadcrumbs" />
 
-        <h1 class="text-3xl font-bold mb-4">Create Song</h1>
+        <h1 class="text-3xl font-bold mb-4">Create Page</h1>
 
         <Form />
 
-        <!-- <div class="my-4 max-w-lg" v-html="page.description"></div> -->
     </div>
 </template>
 
 <script setup>
 import Breadcrumbs from "../../../Shared/Breadcrumbs";
-import Form from "../../../Shared/Songs/Form";
+import Form from "../../../Shared/Pages/Form";
 let breadcrumbs = [
     {
         name: "Home",
@@ -24,8 +23,8 @@ let breadcrumbs = [
         url: "/admin",
     },
     {
-        name: "Songs",
-        url: "/admin/songs",
+        name: "Pages",
+        url: "/admin/pages",
     },
     {
         name: "Create",

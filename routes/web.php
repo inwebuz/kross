@@ -38,12 +38,10 @@ Route::post('login', [LoginController::class, 'store']);
 Route::get('register', [RegisterController::class, 'create'])->name('register');
 Route::post('register', [RegisterController::class, 'store']);
 
-Route::group(['as' => 'admin', 'middleware' => ['auth'], 'prefix' => 'admin'], function(){
-    Route::get('/', [AdminPageController::class, 'index'])->name('index');
-    Route::get('songs', [AdminSongController::class, 'index'])->name('songs.index');
-    Route::get('songs/create', [AdminSongController::class, 'create']);
-    Route::post('songs', [AdminSongController::class, 'store']);
-    Route::delete('songs/{song}', [AdminSongController::class, 'destroy']);
+Route::group(['as' => 'admin.', 'middleware' => ['auth'], 'prefix' => 'admin'], function(){
+    Route::get('/', [AdminPageController::class, 'dashboard'])->name('dashboard');
+    Route::resource('songs', AdminSongController::class);
+    Route::resource('pages', AdminPageController::class);
 });
 
 Route::post('logout', [LoginController::class, 'destroy'])->middleware(['auth'])->name('logout');

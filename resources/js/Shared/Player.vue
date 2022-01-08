@@ -285,6 +285,10 @@ export default {
             this.songs[this.currentTrackIndex].favorited = !this.songs[this.currentTrackIndex].favorited;
         },
     },
+    unmounted() {
+        this.audio.pause();
+        this.isTimerPlaying = false;
+    },
     created() {
         this.currentTrack = this.songs[0];
         this.audio = new Audio();

@@ -50,6 +50,42 @@ class SongController extends Controller
         return redirect()->route('admin.songs.index')->with('success', 'Song has been saved');
     }
 
+    public function edit(Request $request, Song $song)
+    {
+        return Inertia::render('Admin/Songs/Edit', compact('song'));
+    }
+
+    public function update(Request $request, Song $song)
+    {
+        // Log::info($request->all());
+        $data = $request->validate([
+            'name' => 'required',
+            'artist' => 'required',
+            'file' => 'nullable|file|mimetypes:audio/mpeg',
+            'image' => 'nullable|image',
+        ]);
+
+        $updateData = [
+            'name' => $data['name'],
+            'artist' => $data['artist'],
+            'status' => 1,
+        ];
+        if ($request->file) {
+            Storage::disk('public')->delete($song->file);
+            $filePath = $request->file->store('songs', 'public');
+            $updateData['file_name'] = $request->file->getClientOriginalName();
+            $updateData['file'] = $filePath;
+        }
+        if ($request->image) {
+            Storage::disk('public')->delete($song->image);
+            $imagePath = $request->image->store('songs', 'public');
+            $updateData['image'] = $imagePath;
+        }
+        $song->update($updateData);
+
+        return redirect()->route('admin.songs.index')->with('success', 'Song has been saved');
+    }
+
     public function destroy(Request $request, Song $song)
     {
         Storage::disk('public')->delete($song->file);

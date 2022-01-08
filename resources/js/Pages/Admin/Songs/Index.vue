@@ -127,6 +127,12 @@
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-bold">
                             <Link
+                                :href="'/admin/songs/' + song.id + '/edit'"
+                                class="font-normal text-yellow-600 hover:text-yellow-900 mr-2"
+                            >
+                                Edit
+                            </Link>
+                            <Link
                                 :href="'/admin/songs/' + song.id"
                                 as="button"
                                 method="DELETE"
