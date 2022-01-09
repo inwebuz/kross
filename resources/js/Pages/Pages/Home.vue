@@ -5,7 +5,7 @@
             <span class="w-20 h-2 mb-12 hidden sm:inline-block bg-white">
             </span>
             <h1 class="font-bebas-neue uppercase text-5xl sm:text-7xl font-black flex flex-col leading-none mb-4">
-                KROSS REMIX
+                KROSS
             </h1>
             <div class="text-block" v-html="page.description"></div>
             <div class="mt-8">
