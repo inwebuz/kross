@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Setting;
+use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
@@ -23,12 +24,16 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required',
-            'phone_number' => 'required',
-            'message' => 'required',
+            'name' => 'required|max:255',
+            'phone_number' => 'required|max:255',
+            'message' => 'required|max:5000',
         ]);
-        // send message
-        Log::info($data);
+
+        // send telegram
+        $telegram_chat_id = config('services.telegram.chat_id');
+        $telegramService = new TelegramService();
+        $message = view('telegram.admin.contact', compact('data'))->render();
+        $telegramService->sendMessage($telegram_chat_id, $message, 'HTML');
 
         return redirect()->route('contacts.index')->with('success', 'Message has been successfully sent!');
     }

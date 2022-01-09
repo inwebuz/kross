@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'telegram' => [
+        'bot_name' => env('TELEGRAM_BOT_NAME'),
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+        'hook_url' => env('TELEGRAM_HOOK_URL'),
+        'chat_id' => env('TELEGRAM_CHAT_ID'),
+    ],
+
 ];
