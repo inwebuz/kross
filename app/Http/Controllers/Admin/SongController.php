@@ -57,7 +57,6 @@ class SongController extends Controller
 
     public function update(Request $request, Song $song)
     {
-        Log::info($request->all());
         $data = $request->validate([
             'name' => 'required',
             'artist' => 'required',
