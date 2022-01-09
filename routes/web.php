@@ -41,7 +41,13 @@ Route::post('login', [LoginController::class, 'store']);
 
 Route::group(['as' => 'admin.', 'middleware' => ['auth'], 'prefix' => 'admin'], function(){
     Route::get('/', [AdminPageController::class, 'dashboard'])->name('dashboard');
-    Route::resource('songs', AdminSongController::class);
+    // Route::resource('songs', AdminSongController::class);
+    Route::get('songs', [AdminSongController::class, 'index'])->name('songs.index');
+    Route::get('songs/create', [AdminSongController::class, 'create'])->name('songs.create');
+    Route::post('songs', [AdminSongController::class, 'store'])->name('songs.store');
+    Route::get('songs/{song}/edit', [AdminSongController::class, 'edit'])->name('songs.edit');
+    Route::post('songs/{song}', [AdminSongController::class, 'update'])->name('songs.update');
+    Route::delete('songs/{song}', [AdminSongController::class, 'destroy'])->name('songs.destroy');
     Route::resource('pages', AdminPageController::class);
     Route::resource('settings', AdminSettingController::class);
 });

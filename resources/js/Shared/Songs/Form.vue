@@ -114,7 +114,7 @@ let form = useForm({
 let submit = () => {
     let isEdit = props.song ? true : false;
     if (isEdit) {
-        form.put("/admin/songs/" + props.song.id, {
+        form.post("/admin/songs/" + props.song.id, {
             preserveScroll: true,
             onSuccess: () => form.reset(),
         });
