@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -36,7 +37,9 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request)
     {
+        $social = Setting::where('group', 'social')->orderBy('sort_number')->get();
         return array_merge(parent::share($request), [
+            'social' => $social,
             'flash' => [
                 'success' => $request->session()->get('success'),
             ],

@@ -25,6 +25,7 @@ class CreateSettingsTable extends Migration
             $table->text('file')->nullable();
             $table->string('file_name')->nullable();
             $table->text('svg')->nullable();
+            $table->integer('sort_number')->default(0);
             $table->timestamps();
         });
     }
